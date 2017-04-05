@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.TemporalTables", "EntityFramework.TemporalTables\EntityFramework.TemporalTables.csproj", "{8A3784B7-F9BD-47E4-80B5-B41B69A39DC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.EfTemporalTables.Demo", "EntityFramework.TemporalTables.Demo\EntityFramework.EfTemporalTables.Demo.csproj", "{419F09AE-6EF0-43DD-BF82-949E49E9D0E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A3784B7-F9BD-47E4-80B5-B41B69A39DC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A3784B7-F9BD-47E4-80B5-B41B69A39DC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A3784B7-F9BD-47E4-80B5-B41B69A39DC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A3784B7-F9BD-47E4-80B5-B41B69A39DC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{419F09AE-6EF0-43DD-BF82-949E49E9D0E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{419F09AE-6EF0-43DD-BF82-949E49E9D0E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{419F09AE-6EF0-43DD-BF82-949E49E9D0E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{419F09AE-6EF0-43DD-BF82-949E49E9D0E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
