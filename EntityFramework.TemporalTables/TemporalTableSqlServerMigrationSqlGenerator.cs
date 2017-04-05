@@ -8,6 +8,7 @@ using System.Linq;
 using EntityFramework.TemporalTables.Utilities;
 using System.Data.Entity.Infrastructure.Pluralization;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Annotations;
 
 namespace EntityFramework.TemporalTables {
 
@@ -114,7 +115,8 @@ namespace EntityFramework.TemporalTables {
             // if the annotation is present. Once that's done, we then need to create a Table Valued Function (TVF) in
             // the database to select the values from the temporal table as of a particular System Date and Time (in UTC)
             base.Generate(createTableOperation);
-            if (createTableOperation.Annotations.TryGetValue("HistoryTableName", out var annotationValue)) {
+            object annotationValue;
+            if (createTableOperation.Annotations.TryGetValue("HistoryTableName", out annotationValue)) {
                 Statement(getCreateAsOfTvfFunction(createTableOperation.Name));
             }
         }
@@ -130,7 +132,8 @@ namespace EntityFramework.TemporalTables {
         /// annotation (which is typically changed via the <see cref="TemporalTableAttribute"/> attribute on entities.
         /// </summary>
         protected override void Generate(AlterTableOperation alterTableOperation) {
-            if (alterTableOperation.Annotations.TryGetValue("HistoryTableName", out var annotation)) {
+            AnnotationValues annotation;
+            if (alterTableOperation.Annotations.TryGetValue("HistoryTableName", out annotation)) {
                 // There are 3 possibilities when this method is called:
                 // 1. HistoryTable annotation value is changed, so history table is renamed.
                 // 2. HistoryTable annotation is removed, so table is converted to a normal table.

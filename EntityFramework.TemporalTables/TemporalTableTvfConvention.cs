@@ -145,7 +145,8 @@ namespace EntityFramework.TemporalTables {
 
         private string getTvfName(EdmType entityType) {
             string tableName;
-            if (entityType.MetadataProperties.TryGetValue("TableName", false, out var property)) {
+            MetadataProperty property;
+            if (entityType.MetadataProperties.TryGetValue("TableName", false, out property)) {
                 tableName = DatabaseName.Parse(property.Value.ToString()).Name;
             } else {
                 // HACK: Think this mimics the EF default naming of tables.
