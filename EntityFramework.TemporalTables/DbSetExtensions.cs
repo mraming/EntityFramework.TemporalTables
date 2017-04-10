@@ -17,7 +17,7 @@ namespace EntityFramework.TemporalTables {
 
             var objectContext = ((IObjectContextAdapter)set.getContext()).ObjectContext;
 
-            var result = objectContext.CreateQuery<TEntity>($"eftt{GetTableName(typeof(TEntity), objectContext)}AsOf(@timestamp)", timestampParameter).AsQueryable();
+            var result = objectContext.CreateQuery<TEntity>($"eftt{GetTableName(typeof(TEntity), objectContext)}AsOf(@timestamp)", timestampParameter).AsQueryable().AsNoTracking();
             return result;
         }
 
