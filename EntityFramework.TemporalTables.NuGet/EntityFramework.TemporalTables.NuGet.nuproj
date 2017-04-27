@@ -19,7 +19,7 @@
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
     <Id>EntityFramework.TemporalTables</Id>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Title>EntityFramework.TemporalTables</Title>
     <Authors>Mark.Raming</Authors>
     <Owners>Mark.Raming</Owners>
