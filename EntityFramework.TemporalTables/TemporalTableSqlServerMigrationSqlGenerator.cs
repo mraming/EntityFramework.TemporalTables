@@ -127,6 +127,10 @@ namespace EntityFramework.TemporalTables {
             return $"CREATE FUNCTION {getSchemaPrefixedAsOfTvfName(dbName)} (@utcSystemTime DATETIME2) RETURNS TABLE AS RETURN SELECT * FROM {tableName} FOR SYSTEM_TIME AS OF @utcSystemTime";
         }
 
+        private string getCreateAsOfTvfFunction(DatabaseName tableName) {
+            return $"CREATE FUNCTION {getSchemaPrefixedAsOfTvfName(tableName)} (@utcSystemTime DATETIME2) RETURNS TABLE AS RETURN SELECT * FROM {tableName} FOR SYSTEM_TIME AS OF @utcSystemTime";
+        }
+
         /// <summary>
         /// Override of base class implementation that implements support for handling changes to the HistoryTableName
         /// annotation (which is typically changed via the <see cref="TemporalTableAttribute"/> attribute on entities.
@@ -199,7 +203,6 @@ namespace EntityFramework.TemporalTables {
             using (var writer = Writer()) {
                 DatabaseName dbOldName = DatabaseName.Parse(renameTableOperation.Name);
                 var oldName = getSchemaPrefixedAsOfTvfName(dbOldName);
-                var newName = getAsOfTvfName(new DatabaseName(renameTableOperation.NewName, dbOldName.Schema));
 
                 writer.WriteLine();
                 writer.Write("IF object_id('");
@@ -207,11 +210,11 @@ namespace EntityFramework.TemporalTables {
                 writer.WriteLine("') IS NOT NULL BEGIN");
                 writer.Indent++;
                 writer.WriteLine($"DROP FUNCTION {oldName};");
+                writer.WriteLine("EXECUTE('" + getCreateAsOfTvfFunction(new DatabaseName(renameTableOperation.NewName, dbOldName.Schema)) + "');");
                 writer.Indent--;
                 writer.WriteLine("END");
 
                 Statement(writer);
-                Statement(getCreateAsOfTvfFunction(renameTableOperation.NewName));
             }
         }
 
